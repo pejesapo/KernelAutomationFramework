@@ -62,11 +62,11 @@ public class Login_User{
 	 
 	 @Test
      public void an_error_message_should_display_when_logging_in_with_inorrect_credentials() {
-             logger.info("Given I'm in Kernel's Home Page");
+             //logger.info("Given I'm in Kernel's Home Page");
              
-             logger.info("When I enter an incorrect email and incorrect password");
+             //logger.info("When I enter an incorrect email and incorrect password");
              
-             logger.info("Then a popup message error should be displayed ");
+             //logger.info("Then a popup message error should be displayed ");
              
              
      }
