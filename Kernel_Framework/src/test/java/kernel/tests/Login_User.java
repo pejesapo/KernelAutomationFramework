@@ -48,12 +48,15 @@ public class Login_User{
 	 }
 
 	 @Test
-     public void should_loging_with_correct_credentials() {
+     public void should_logging_with_correct_credentials() {
              logger.info("Given I'm in Kernel's Home Page");
              KernelLoginPage loginPage = new KernelHomePage(this.browser).open().goToLoginPage();
              
-             logger.info("When I enter a correct email and correct password");
-             KernelDashboardPage dashboardPage = loginPage.login("wt.delacruz@gmail.com", "mollendo");
+             logger.info("When I enter an email and password");
+             loginPage.enterEmailAndPassword("wt.delacruz@gmail.com", "mollendo");
+             
+             logger.info("And I login to the system");
+             KernelDashboardPage dashboardPage = loginPage.login();
              
              logger.info("Then I should be redirected to my personal Dashboard ");
              assertTrue(dashboardPage.isFullyLoaded);
@@ -62,12 +65,16 @@ public class Login_User{
 	 
 	 @Test
      public void an_error_message_should_display_when_logging_in_with_inorrect_credentials() {
-             //logger.info("Given I'm in Kernel's Home Page");
+			logger.info("Given I'm in Kernel's Home Page");
+			KernelLoginPage loginPage = new KernelHomePage(this.browser).open().goToLoginPage();
              
-             //logger.info("When I enter an incorrect email and incorrect password");
+             logger.info("When I enter an incorrect email and password");
+             loginPage.enterEmailAndPassword("wrongEmail@gmail.com", "wrongPassword");
              
-             //logger.info("Then a popup message error should be displayed ");
+             logger.info("And I try to login to the system");
+             loginPage.signInButton.click();
              
+             logger.info("Then a popup message error should be displayed with the text: You entered a wrong username or password combination. Try again, or click the Forgot Password link.");
              
      }
      
