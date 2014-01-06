@@ -1,6 +1,6 @@
 package kernel.setup;
 
-import kernel.tests.Login_User;
+import kernel.tests.security.Login_User;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
