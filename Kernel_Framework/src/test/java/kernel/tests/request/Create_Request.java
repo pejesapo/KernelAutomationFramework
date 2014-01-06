@@ -1,15 +1,10 @@
 package kernel.tests.request;
 
-import static org.junit.Assert.assertTrue;
-import kernel.pageObjects.KernelDashboardPage;
-import kernel.pageObjects.KernelHomePage;
-import kernel.pageObjects.KernelLoginPage;
 import kernel.util.KernelTest;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
