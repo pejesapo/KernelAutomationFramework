@@ -2,7 +2,7 @@ package kernel.pageObjects;
 
 import java.util.concurrent.TimeUnit;
 
-import kernel.tests.Login_User;
+import kernel.tests.security.Login_User;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
