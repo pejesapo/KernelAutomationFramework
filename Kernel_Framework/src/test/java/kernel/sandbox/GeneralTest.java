@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 import kernel.pageObjects.KernelDashboardPage;
 import kernel.pageObjects.KernelHomePage;
 import kernel.pageObjects.KernelLoginPage;
-import kernel.setup.KernelTest;
+import kernel.util.KernelTest;
 
 import org.junit.After;
 import org.junit.Before;
