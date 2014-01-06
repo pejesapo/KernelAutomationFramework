@@ -59,15 +59,13 @@ public class KernelLoginPage extends KernelPage<KernelLoginPage> {
 		return false;
 	}
 
-	// ToDo
-	public String isLoginErrorMessageDisplayed(String message) {
-		WebElement errorMessage = (new WebDriverWait(this.browser, 30)
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.xpath("//*[@class='mod-modal-wrapper error']//*[text()='"
-								+ message + "']"))));
-		
-		
-		return "";
+	public boolean isLoginErrorMessageDisplayed(String message) {
+		logger.info("Doing <isLoginErrorMessageDisplayed>");
+		this.waitFor(ExpectedConditions.presenceOfElementLocated(By
+				.xpath("//*[@class='mod-modal-wrapper error']//*[text()='"
+						+ message + "']")));
+
+		return true;
 	}
 
 }

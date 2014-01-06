@@ -17,6 +17,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -48,29 +49,16 @@ public class GeneralTest{
 								+ message + "']"))));
            }
            catch(TimeoutException e){
+        	   System.out.println(e.getMessage());
+        	   System.exit(0);
         	   
            }
-           
-           
            
            
            Thread.sleep(10000);
            
              
-     }
-	 
-	 
-	 public void waitUntil(ExpectedConditions expectedCondition, By by){
-		 try{
-	           WebElement errorMessage = (new WebDriverWait(this.browser, 30)
-				.until(ExpectedConditions.presenceOfElementLocated(by)));
-         }
-         catch(TimeoutException e){
-      	   
-         }
-	 }
-	 
-	
+     }	
      
      
 }
