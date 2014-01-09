@@ -2,7 +2,7 @@ package kernel.pageObjects;
 
 import java.util.concurrent.TimeUnit;
 
-import kernel.tests.security.Login_User;
+import kernel.tests.security.Test_UserAuthentication;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -27,13 +27,14 @@ public abstract class KernelPage<T> {
 	private static final int REFRESH_RATE = 1;
 	public boolean isFullyLoaded = false;
 	public static final Logger logger = LoggerFactory
-			.getLogger(Login_User.class);
+			.getLogger(Test_UserAuthentication.class);
 
 	public KernelPage(WebDriver browser) {
 		this.browser = browser;
 	}
 
-	public T openPage(Class<T> clazz) {
+	public T open(Class<T> clazz) {
+		logger.info("Doing <{}.open>", clazz.toString());
 		T page = PageFactory.initElements(this.browser, clazz);
 		this.browser.get(BASE_URL + getPageUrl());
 		ExpectedCondition pageLoadCondition = ((KernelPage) page)
@@ -46,7 +47,7 @@ public abstract class KernelPage<T> {
 		return page;
 	}
 
-	public T initPage(Class<T> clazz) {
+	public T init(Class<T> clazz) {
 		T page = PageFactory.initElements(browser, clazz);
 		ExpectedCondition pageLoadCondition = ((KernelPage) page)
 				.getPageLoadCondition();

@@ -28,15 +28,14 @@ public class KernelHomePage extends KernelPage<KernelHomePage> {
 		return "";
 	}
 
-	public KernelHomePage open() {
-		logger.info("Doing <{}.open>", this.getClass().toString());
-		return new KernelHomePage(this.browser).openPage(KernelHomePage.class);
+	public KernelHomePage visit() {		
+		return new KernelHomePage(this.browser).open(KernelHomePage.class);
 	}
 
-	public KernelLoginPage goToLoginPage(){
-		logger.info("Doing <{}.goToLoginPage>",this.getClass().toString());
+	public KernelLoginPage navigateToLoginPage(){
+		logger.info("Doing <{}.navigateToLoginPage>",this.getClass().toString());
 		loginLink.click();
-		return new KernelLoginPage(this.browser).initPage(KernelLoginPage.class);
+		return new KernelLoginPage(this.browser).init(KernelLoginPage.class);
 	}
 	
 }

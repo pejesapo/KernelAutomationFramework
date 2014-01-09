@@ -37,7 +37,7 @@ public class KernelDashboardPage extends KernelPage<KernelDashboardPage> {
 		logger.info("Doing <goToCreateRequest>");
 		kernelLogoButton.click();
 		createRequestButton.click();
-		return new KernelCreateRequestPage(this.browser).initPage(KernelCreateRequestPage.class);
+		return new KernelCreateRequestPage(this.browser).init(KernelCreateRequestPage.class);
 	}
 
 }

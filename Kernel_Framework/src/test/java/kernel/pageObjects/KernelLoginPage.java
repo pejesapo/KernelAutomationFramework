@@ -1,16 +1,15 @@
 package kernel.pageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class KernelLoginPage extends KernelPage<KernelLoginPage> {
 
-	// private final WebDriver browser;
+	public final static String AUTHENTICATION_ERROR_MESSAGE = "You entered a wrong username or password combination. "
+			+ "Try again, or click the Forgot Password link.";
 
 	@FindBy(id = "emailField")
 	public WebElement emailTextField;
@@ -23,10 +22,13 @@ public class KernelLoginPage extends KernelPage<KernelLoginPage> {
 
 	@FindBy(xpath = "//*[text()='Forgot Password']")
 	public WebElement forgotPasswordLink;
+	
+	@FindBy(xpath = "//*[@class='mod-modal-wrapper error']//*[text()='"
+			+ KernelLoginPage.AUTHENTICATION_ERROR_MESSAGE + "']")
+	public WebElement authenticationErrorMessageWebElement;
 
 	public KernelLoginPage(WebDriver browser) {
 		super(browser);
-		// this.browser = browser;
 	}
 
 	@Override
@@ -39,31 +41,39 @@ public class KernelLoginPage extends KernelPage<KernelLoginPage> {
 		return "/#login";
 	}
 
-	public KernelDashboardPage login() {
-		logger.info("Doing <login>");
-		signInButton.click();
-		return new KernelDashboardPage(this.browser)
-				.initPage(KernelDashboardPage.class);
+	public KernelLoginPage visit() {
+		return new KernelLoginPage(this.browser).open(KernelLoginPage.class);
 	}
 
-	public void enterEmailAndPassword(String email, String password) {
-		logger.info("Doing <enterEmailAndPassword>");
+	public KernelDashboardPage authenticate(String type, String email,
+			String password) {
+		logger.info("Doing <authenticate>");
 		emailTextField.clear();
 		emailTextField.sendKeys(email);
 		passwordTextField.clear();
 		passwordTextField.sendKeys(password);
+		signInButton.click();
+
+		KernelDashboardPage result = null;
+		switch (type) {
+		case "correct":
+			result = new KernelDashboardPage(this.browser)
+					.init(KernelDashboardPage.class);
+			break;
+		case "incorrect":
+			break;
+		}
+		return result;
 	}
 
-	// ToDo
+	// TODO
 	public boolean isLoginError() {
 		return false;
 	}
 
-	public boolean isLoginErrorMessageDisplayed(String message) {
+	public boolean isLoginErrorMessageDisplayed() {
 		logger.info("Doing <isLoginErrorMessageDisplayed>");
-		this.waitFor(ExpectedConditions.presenceOfElementLocated(By
-				.xpath("//*[@class='mod-modal-wrapper error']//*[text()='"
-						+ message + "']")));
+		this.waitFor(ExpectedConditions.visibilityOf(authenticationErrorMessageWebElement));
 
 		return true;
 	}
