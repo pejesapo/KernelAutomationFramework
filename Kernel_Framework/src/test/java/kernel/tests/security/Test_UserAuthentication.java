@@ -45,7 +45,7 @@ public class Test_UserAuthentication {
 
 	@After
 	public void tearDown() {
-		logger.trace("Shutting down Selenium-Webdriver");
+		logger.info("Shutting down Selenium-Webdriver");
 		this.browser.quit();
 	}
 
